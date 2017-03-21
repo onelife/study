@@ -1,6 +1,6 @@
 package funsets
 
-object set {
+object week2 {
   val x = FunSets.singletonSet(1)                 //> x  : funsets.FunSets.Set = <function1>
   x(1)                                            //> res0: Boolean = true
   x(2)                                            //> res1: Boolean = false
@@ -13,9 +13,9 @@ object set {
   y(6)                                            //> res4: Boolean = true
   y(18)                                           //> res5: Boolean = true
   
-  var m = Zero.successor                          //> m  : funsets.Nat = funsets.Succ@17c68925
-  var n = Zero.successor.successor                //> n  : funsets.Nat = funsets.Succ@7e0ea639
-  m+n                                             //> res6: funsets.Nat = funsets.Succ@3d24753a
+  var m = Zero.successor                          //> m  : funsets.Nat = funsets.Succ@7a0ac6e3
+  var n = Zero.successor.successor                //> n  : funsets.Nat = funsets.Succ@71be98f5
+  m+n                                             //> res6: funsets.Nat = funsets.Succ@6fadae5d
 }
 
 abstract class Nat {

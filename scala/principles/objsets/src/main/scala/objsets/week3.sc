@@ -1,6 +1,6 @@
 package objsets
 
-object tw {
+object week3 {
   val set1 = new Empty                            //> set1  : objsets.Empty = .E.
   val a = new Tweet("a", "a body", 20)            //> a  : objsets.Tweet = User: a
                                                   //| Text: a body [20]

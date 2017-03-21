@@ -1,6 +1,6 @@
 package patmat
 
-object test {
+object week4 {
 	//def times(chars: List[Char]): List[(Char, Int)] = chars.distinct.collect({case x => (x, chars.count(_ == x))})
 	def times(chars: List[Char]): List[(Char, Int)] = chars.distinct.map(x => (x, chars.count(_ == x)))
                                                   //> times: (chars: List[Char])List[(Char, Int)]
@@ -51,58 +51,4 @@ object test {
   Huffman.quickEncode(t1)("abb".toList)           //> res13: List[patmat.Huffman.Bit] = List(0, 1, 1)
   Huffman.decode(t1, List(1, 1, 0))               //> res14: List[Char] = List(b, b, a)
 
-	def flatten(xs: List[Any]): List[Any] = xs match {
-		case List() => List()
-		case y :: ys => println(y); y match {
-			case List() => flatten(ys)
-			case z :: zs => List(z) ::: flatten(zs) ::: flatten(ys)
-			case default => y :: flatten(ys)
-		}
-	}                                         //> flatten: (xs: List[Any])List[Any]
-	
-	flatten(List(List(1, 1), 2, List(3, List(5, 8))))
-                                                  //> List(1, 1)
-                                                  //| 1
-                                                  //| 2
-                                                  //| List(3, List(5, 8))
-                                                  //| List(5, 8)
-                                                  //| 8
-                                                  //| res15: List[Any] = List(1, 1, 2, 3, 5, 8)
-
-	def msort(xs: List[Int]): List[Int] = {
-		val n = xs.length / 2
-		if (n == 0) xs
-		else {
-			def merge(xs: List[Int], ys: List[Int]): List[Int] = (xs, ys) match {
-				case (Nil, ys) => ys
-				case (xs, Nil) => xs
-				case (x :: xs1, y :: ys1) =>
-					if (x < y) x :: merge(xs1, ys)
-					else y :: merge(xs, ys1)
-			}
-			
-			val (fst, snd) = xs splitAt n
-			merge(msort(fst), msort(snd))
-		}
-	}                                         //> msort: (xs: List[Int])List[Int]
-	
-	val nums = List(2, -4, 5, 7, 1)           //> nums  : List[Int] = List(2, -4, 5, 7, 1)
-	msort(nums)                               //> res16: List[Int] = List(-4, 1, 2, 5, 7)
-	
-	(nums foldLeft 0) (_ + _)                 //> res17: Int = 11
-	Nil :: Nil                                //> res18: List[scala.collection.immutable.Nil.type] = List(List())
-	def reverse[T](xs: List[T]): List[T] = (xs foldLeft List[T]())((ys, y) => y :: ys)
-                                                  //> reverse: [T](xs: List[T])List[T]
-	reverse(Nil)                              //> res19: List[Nothing] = List()
-	reverse(List(1))                          //> res20: List[Int] = List(1)
-	reverse(List(1, 2))                       //> res21: List[Int] = List(2, 1)
-	
-	def mapFun[T, U](xs: List[T], f: T => U): List[U] =
-  	(xs foldRight List[U]())(f(_) :: _)       //> mapFun: [T, U](xs: List[T], f: T => U)List[U]
-
-	def lengthFun[T](xs: List[T]): Int =
-	  (xs foldRight 0)((ys, y) => 1 + y)      //> lengthFun: [T](xs: List[T])Int
-	
-	mapFun[Int, Int](nums, x => x*2)          //> res22: List[Int] = List(4, -8, 10, 14, 2)
-	lengthFun(nums)                           //> res23: Int = 5
 }
